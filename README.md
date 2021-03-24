@@ -44,5 +44,5 @@ In order for this function to work, the following must be configured as function
 ## Function Event Flow
 The `verify-signature-event` function is designed to take in an OCI Event.  The event is generated based on the addition or update of an object in a bucket.  There are 2 buckets involved in the overall solution - one as the input bucket and exposed to clients (writable), and the other internal, where verified messages are put by the function.  Each time the input bucket is added to, the function takes that event, looks at the new message, calculates the (same) digest as the client, and uses the OCI Crypto API to verify the supplied signature.  If the verification is successful, the message is then put to the internal bucket, where it cane be trusted or acted upon.
 
-# ![Diagram](https://raw.githubusercontent.com/agregory999/oci-architecture/493f5d0e9aa60b4ae6100940ae27a717e80b1946/DigitalSignatureFlow.svg?token=AHFKDJWIGOAUE67F5PXTLNDALNCJW)
+![Diagram](https://raw.githubusercontent.com/agregory999/oci-architecture/493f5d0e9aa60b4ae6100940ae27a717e80b1946/DigitalSignatureFlow.svg?token=AHFKDJWIGOAUE67F5PXTLNDALNCJW)
 https://raw.githubusercontent.com/agregory999/oci-architecture/493f5d0e9aa60b4ae6100940ae27a717e80b1946/DigitalSignatureFlow.svg?token=AHFKDJWIGOAUE67F5PXTLNDALNCJW
