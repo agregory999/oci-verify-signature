@@ -26,7 +26,7 @@ oci --profile INTEGRATION os object put  --bucket-name DigitalSignatureBucket --
 --metadata '{"signature": "UESjYkFS1Uvkuy5ESmvwJ47YfJTOzD6PVcDqo35DwXSqWgP3OOC4L+xnGMtJT8qbsws8DC+I63FjkP9b7wPxV+FpjVTXTQYf+SwXvlK7zqWeXBoHjLlo5BcUnCMF+4S6kTcq7RNdh6YcCtODdZ8uncSY/RrenjaqyQrjdnVKvSaS25gkmew5m6scprt6ZakDbKUe/G98TL+KWtmSINlIng0oeJWMTaCYkFXNN8lV04wOfE5uCCXQXjhGuNTanvyig+cRbbfxoORa6nO8+y4ffquQ+kE4hLB5K4pMgridqpEEPBP45r3Kg5vjdGshnCbHuOcIigVUQWKf8JASgCVjZw=="}'
 ```
 
-## Generic Function
+## Function #1 -- Signature Verification (pass in digest and signature)
 There is a generic function called verify-signature.  It requires an invocation with a message signature and a digest.  The function calls the OCI Crypto API and produces a verification response.  If successful, the response will look look like this:
 ```bash
 prompt>  echo '{"digest":"WiiYYbUrBmSLvtnY3FM5o/CGgMPNh/TntFvdSA==","signature":"UESjYkFS1Uvkuy5ESmvwJ47YfJTOzD6PVcDqo35DwXSqWgP3OOC4L+xnGMtJT8qbsws8DC+I63FjkP9b7wPxV+FpjVTXTQYf+SwXvlK7zqWeXBoHjLlo5BcUnCMF+4S6kTcq7RNdh6YcCtODdZ8uncSY/RrenjaqyQrjdnVKvSaS25gkmew5m6scprt6ZakDbKUe/G98TL+KWtmSINlIng0oeJWMTaCYkFXNN8lV04wOfE5uCCXQXjhGuNTanvyig+cRbbfxoORa6nO8+y4ffquQ+kE4hLB5K4pMgridqpEEPBP45r3Kg5vjdGshnCbHuOcIigVUQWKf8JASgCVjZw=="}' |fn invoke FunctionsApp verify-signature
@@ -42,7 +42,7 @@ In order for this function to work, the following must be configured as function
 - signing_algorithm
 - endpoint
 
-## Function Event Flow
+## Function #2 -- Event Flow (message put in bucket kicks it off)
 The `verify-signature-event` function is designed to take in an OCI Event.  The event is generated based on the addition or update of an object in a bucket.  There are 2 buckets involved in the overall solution - one as the input bucket and exposed to clients (writable), and the other internal, where verified messages are put by the function.  Each time the input bucket is added to, the function takes that event, looks at the new message, calculates the (same) digest as the client, and uses the OCI Crypto API to verify the supplied signature.  If the verification is successful, the message is then put to the internal bucket, where it cane be trusted or acted upon.
 
 ### Diagram
