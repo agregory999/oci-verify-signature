@@ -22,7 +22,8 @@ oci --profile INTEGRATION kms crypto signed-data sign --key-id ocid1.key.oc1.iad
 ```
 The resulting signature can then be added to an object storage bucket as metadata - note that the digest is explicly not sent, as the function will re-calculate the same hashed message digest:
 ```bash
-oci --profile INTEGRATION os object put  --bucket-name DigitalSignatureBucket --file 0120\&AD19468263\&SH3A4956.03\&1.0\&2018-08-08\&09-21-42.xml --metadata '{"signature": "UESjYkFS1Uvkuy5ESmvwJ47YfJTOzD6PVcDqo35DwXSqWgP3OOC4L+xnGMtJT8qbsws8DC+I63FjkP9b7wPxV+FpjVTXTQYf+SwXvlK7zqWeXBoHjLlo5BcUnCMF+4S6kTcq7RNdh6YcCtODdZ8uncSY/RrenjaqyQrjdnVKvSaS25gkmew5m6scprt6ZakDbKUe/G98TL+KWtmSINlIng0oeJWMTaCYkFXNN8lV04wOfE5uCCXQXjhGuNTanvyig+cRbbfxoORa6nO8+y4ffquQ+kE4hLB5K4pMgridqpEEPBP45r3Kg5vjdGshnCbHuOcIigVUQWKf8JASgCVjZw=="}'
+oci --profile INTEGRATION os object put  --bucket-name DigitalSignatureBucket --file file.xml \
+--metadata '{"signature": "UESjYkFS1Uvkuy5ESmvwJ47YfJTOzD6PVcDqo35DwXSqWgP3OOC4L+xnGMtJT8qbsws8DC+I63FjkP9b7wPxV+FpjVTXTQYf+SwXvlK7zqWeXBoHjLlo5BcUnCMF+4S6kTcq7RNdh6YcCtODdZ8uncSY/RrenjaqyQrjdnVKvSaS25gkmew5m6scprt6ZakDbKUe/G98TL+KWtmSINlIng0oeJWMTaCYkFXNN8lV04wOfE5uCCXQXjhGuNTanvyig+cRbbfxoORa6nO8+y4ffquQ+kE4hLB5K4pMgridqpEEPBP45r3Kg5vjdGshnCbHuOcIigVUQWKf8JASgCVjZw=="}'
 ```
 
 ## Generic Function
