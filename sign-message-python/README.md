@@ -18,7 +18,7 @@ prompt> echo '{"base64message":"${INPUT}"}'|fn -v invoke FunctionsApp sign-messa
 }
 ```
 In order to verify the signature, see the corresponding verification function:
-- [verify-signature] (../verify-signature-python)
+- [verify-signature](../verify-signature-python)
 
 ### Configuring Generic Function
 In order for this function to work, the following must be configured as function configs:
