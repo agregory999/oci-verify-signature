@@ -6,7 +6,7 @@ This repository contains functions written to accomplish the task of taking an X
 
 Each function can stand on its own, but likely is to be incorporated into a processing flow.  Included are call examples and the overall flow if applicable.  
 
-[Simple Python](verify-signature-python-simple/Readme.md) 
-[Event Flow - Python](verify-signature-python-event/Readme.md) 
-[XML Digital Signature - Java](verify-signature-java/Readme.md) 
+- [Simple Python](verify-signature-python-simple/README.md) 
+- [Event Flow - Python](verify-signature-python-event/README.md) 
+- [XML Digital Signature - Java](verify-signature-java/README.md) 
  
