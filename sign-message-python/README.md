@@ -27,3 +27,10 @@ In order for this function to work, the following must be configured as function
 - signing_algorithm
 - endpoint
 
+These can be configed via OCI Console, or via the shell and FN command line:
+```bash
+prompt> fn config function FunctionsApp sign-message-python endpoint https://xxx-crypto.kms.us-ashburn-1.oraclecloud.com
+prompt> fn config function FunctionsApp sign-message-python key_ocid "ocid1.key.oc1.xxx"
+prompt> fn config function FunctionsApp sign-message-python signing_algorithm "SHA_224_RSA_PKCS_PSS"
+prompt> fn config function FunctionsApp sign-message-python key_version_ocid ocid1.keyversion.oc1.xxx"
+```

@@ -2,6 +2,8 @@ import io
 import json
 import logging
 import oci
+import hashlib
+import base64
 
 from fdk import response
 from oci.key_management.models import verified_data
@@ -31,13 +33,13 @@ def handler(ctx, data: io.BytesIO = None):
     # Get Request   
     try:
         jsonrequest = json.loads(data.getvalue())
-        digest = jsonrequest.get("digest")
+        base64message = jsonrequest.get("base64message")
         signature = jsonrequest.get("signature")
     except Exception as ex:
-        print('ERROR: params JSON example: { "digest":"xxx","signature":"xxx=="}', ex, flush=True)
+        print('ERROR: params JSON example: { "base64message":"xxx","signature":"xxx=="}', ex, flush=True)
         return response.Response(
             ctx, response_data=json.dumps(
-            {"error": 'Please send me JSON like this: { "digest":"xxx","signature":"xxx=="}'}),
+            {"error": 'Please send me JSON like this: { "base64message":"xxx","signature":"xxx=="}'}),
             headers={"Content-Type": "application/json"}
         )
 
@@ -46,6 +48,9 @@ def handler(ctx, data: io.BytesIO = None):
     try:
         signer = oci.auth.signers.get_resource_principals_signer()
         client = oci.key_management.KmsCryptoClient({}, signer=signer, service_endpoint=endpoint)
+
+        # Make the digest
+        digest = get_digest_from_string(base64message)
 
         # Send the request to service, some parameters are not required, see API
         verify_response = client.verify(
@@ -59,6 +64,7 @@ def handler(ctx, data: io.BytesIO = None):
         )
         
         logging.getLogger().info(verify_response.data)
+        
         # Return something
         return response.Response(
             ctx, response_data=verify_response.data,
@@ -72,9 +78,9 @@ def handler(ctx, data: io.BytesIO = None):
             headers={"Content-Type": "application/json"}
         )
    
-    # Return something
-    return response.Response(
-        ctx, response_data=json.dumps(
-            {"message": "must have been some issue calling me - check the logs"}),
-        headers={"Content-Type": "application/json"}
-    )
+#########   Helper Methods  ########
+def get_digest_from_string(input):
+    m = hashlib.sha224()
+    m.update(str.encode(input))
+    digest = base64.b64encode(m.digest()).decode()
+    return digest
