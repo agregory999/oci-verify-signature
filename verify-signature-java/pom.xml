@@ -61,13 +61,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
-        <dependency>
-            <groupId>org.apache.xmlbeans</groupId>
-            <artifactId>xmlbeans</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-
         <!-- Oracle Functions -->
         <dependency>
             <groupId>com.oracle.oci.sdk</groupId>
