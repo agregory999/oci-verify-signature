@@ -3,7 +3,7 @@
 This use case is based on a customer requirement to ensure that messages received as part of a processing flow are verified to have been untouched since they were created.  The original example uses XML Digital Signature in Java, and is implemented as an Oracle Service Bus callout.  As part of a move to Oracle Integration Cloud (OIC), the same type of flow is needed, but without a Java callout.   
 
 In this example, the XML message has already been produced by the client and contains the XML Signature, as defined by the following spec:
-![W3C](https://www.w3.org/TR/xmldsig-core/)
+[W3C](https://www.w3.org/TR/xmldsig-core/)
 
 The XML file is Base64 encoded and passed in along with an OCID of a pre-shared secret which must be placed into an OIC Vault.  The function performs the following steps:
 - Retrieves the plain-text pre-shared secret from the OCI Vault
