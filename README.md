@@ -11,3 +11,36 @@ Each function can stand on its own, but likely is to be incorporated into a proc
 - [Event Flow - Python](verify-signature-python-event) 
 - [XML Digital Signature - Java](verify-signature-java) 
  
+## API Gateway
+
+Once the functions are deployed and working from the command line, it may be desired to add in an API Gateway to allow external invocation, with control over rates, authentication, and other access characteristics.  It is also likely that callers may be authenticated outside, such as with an OAuth token.
+
+In the simplest case, the API Gateway is added to the public subnet that corresponds to the Functions subnet
+
+![API GW Diagram](images/FunctionsAPIGateway.svg)
+
+## CURL Example
+
+To call the completed API Gateway, use CURL as follows:
+
+```bash
+prompt> echo "abc"|base64
+YWJjCg==
+
+prompt> curl -X POST https://ionu3lubgoktejpxskc6fcjq4y.apigateway.us-ashburn-1.oci.customer-oci.com/vaultsign/sign -H "Content-Type: application/json" -d '{"base64message":"YWJjCg=="}'
+
+
+{
+  "key_id": "ocid1.key.oc1.iad.bfqfhkltaaeuk.abuwcljsvls5p2jxws7rgg6rmv6wwhv4d2f3jwpy62moxqkj4zbxtdjdyeva",
+  "key_version_id": "ocid1.keyversion.oc1.iad.bfqfhkltaaeuk.aumtmbmqgsiaa.abuwcljsrsaiwd7zsw4oouaiejiwk3jmahexmyizjkmkdxozxuwtqsauh5yq",
+  "signature": "evcQLTI0hAqQGYrfTP5laVaUutjw9Sw5MMdFwxOVIBh+3CJj/fJSkkef8b3zakP0Y/hXx9ulj7LwAYeDPFYN1GHqMET5FWScM1V9F5Q2GqPRQiTPuQJZOt1bodnIR92XAJafeL9MPi3uVHjVnp7QCRrR8KsPNMtQLeyFRswDlZkLTOQVEqeKLPVmmZklz5bscgUv6ly/qrJsOGikdqXKY5iScb6JttA/cy6S4M/Xgfh34Rghhio5AbRE5plf8Bug8HJkmbe8Ydg2mCCteZ4iQze0PIhX1lO+pHv1+VTsj28AaNdeV/Yowq0G5NKQLoVhdSCzEUMbhLfZmsQCGl7qhw==",
+  "signing_algorithm": "SHA_224_RSA_PKCS_PSS"
+}
+
+prompt> curl -X POST https://ionu3lubgoktejpxskc6fcjq4y.apigateway.us-ashburn-1.oci.customer-oci.com/vaultsign/verify -H "Content-Type: application/json" -d '{"base64message":"YWJjCg==","signature":"evcQLTI0hAqQGYrfTP5laVaUutjw9Sw5MMdFwxOVIBh+3CJj/fJSkkef8b3zakP0Y/hXx9ulj7LwAYeDPFYN1GHqMET5FWScM1V9F5Q2GqPRQiTPuQJZOt1bodnIR92XAJafeL9MPi3uVHjVnp7QCRrR8KsPNMtQLeyFRswDlZkLTOQVEqeKLPVmmZklz5bscgUv6ly/qrJsOGikdqXKY5iScb6JttA/cy6S4M/Xgfh34Rghhio5AbRE5plf8Bug8HJkmbe8Ydg2mCCteZ4iQze0PIhX1lO+pHv1+VTsj28AaNdeV/Yowq0G5NKQLoVhdSCzEUMbhLfZmsQCGl7qhw=="}'
+{
+  "is_signature_valid": true
+}
+```
+
+

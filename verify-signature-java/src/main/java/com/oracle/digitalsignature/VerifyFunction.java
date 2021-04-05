@@ -18,7 +18,7 @@ import org.w3c.dom.NodeList;
 
 // Oracle Functions
 import com.oracle.bmc.auth.ResourcePrincipalAuthenticationDetailsProvider;
-git add import com.oracle.bmc.secrets.*;
+import com.oracle.bmc.secrets.*;
 import com.oracle.bmc.secrets.model.Base64SecretBundleContentDetails;
 import com.oracle.bmc.secrets.requests.GetSecretBundleRequest;
 import com.oracle.bmc.secrets.responses.GetSecretBundleResponse;
@@ -34,6 +34,7 @@ public class VerifyFunction {
     
     // Constructor gets Vaults client
     public VerifyFunction() {
+        
         // OCI Access requires Resource Principals
         try {
             ResourcePrincipalAuthenticationDetailsProvider ip_provider
