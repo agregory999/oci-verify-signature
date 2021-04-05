@@ -1,0 +1,9 @@
+[
+  {
+    "name" : "com.oracle.digitalsignature.VerifyFunction",
+    "methods" : [
+      { "name" : "handleRequest" },
+      { "name" : "<init>" }
+    ]
+  }
+]
