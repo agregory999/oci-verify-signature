@@ -22,7 +22,7 @@ The message is an existing XML document.  It must be paired with a working pre-s
 ## Command Line
 From the command line, the original message is first base64-encoded:
 ```bash
-prompt> cat file.xml | base64 > file-base64.xml
+prompt> cat file.xml | base64 > file-base64.txt
 ```
 Following this, the function is configured into an FN Context and invoked as such:
 ```bash
