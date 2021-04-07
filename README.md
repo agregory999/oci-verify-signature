@@ -49,3 +49,9 @@ prompt> curl -X POST https://xxx.apigateway.us-ashburn-1.oci.customer-oci.com/xm
 {"verified":true,"detail":"|Digital signature VALID!!!"}%
 ```
 
+
+
+
+
+## Hub / Spoke with 2 API Gateway
+![Advanced}(https://github.com/agregory999/oci-architecture/blob/main/FunctionsAPIGatewayHubSpoke.svg)
