@@ -54,4 +54,4 @@ prompt> curl -X POST https://xxx.apigateway.us-ashburn-1.oci.customer-oci.com/xm
 
 
 ## Hub / Spoke with 2 API Gateway
-![Advanced](https://github.com/agregory999/oci-architecture/blob/main/FunctionsAPIGatewayHubSpoke.svg)
+![Advanced Hub Spoke](images/FunctionsAPIGatewayHubSpoke.svg)
