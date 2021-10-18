@@ -30,7 +30,7 @@ public class VerifyFunction {
     private String ociClientMessage;
 
     // Config Param - if exists and "true"
-    boolean debug = ((System.getenv("DEBUG") != null && System.getenv("DEBUG").equals("true")) ? true : false);
+    boolean debug = false;
     
     // Constructor gets Vaults client
     public VerifyFunction() {
@@ -76,6 +76,7 @@ public class VerifyFunction {
         //private Base64
         private String base64InputXML;
         private String secretOcid;
+        private boolean debug;
 
         public void setXmlString(String xmlString) {
             this.xmlString = xmlString;
@@ -100,10 +101,23 @@ public class VerifyFunction {
         public void setBase64InputXML(String base64InputXML) {
             this.base64InputXML = base64InputXML;
         }
+
+        public boolean isDebug() {
+            return debug;
+        }
+
+        public void setDebug(boolean debug) {
+            this.debug = debug;
+        }
     }
 
     public Response handleRequest(Input input) {
 
+        // Re-check debug (could come from config property DEBUG or request)
+        if (input.isDebug())  
+            debug = true;
+        else
+            debug = ((System.getenv("DEBUG") != null && System.getenv("DEBUG").equals("true")) ? true : false);
 
         // Set up response
         Response resp = new Response(false);

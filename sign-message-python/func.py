@@ -77,7 +77,8 @@ def handler(ctx, data: io.BytesIO = None):
             ctx, response_data=ex,
             headers={"Content-Type": "application/json"}
         )
-#########Helper Methds########
+
+#########   Helper Methods  ########
 def get_digest_from_string(input):
     m = hashlib.sha224()
     m.update(str.encode(input))
