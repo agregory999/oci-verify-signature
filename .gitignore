@@ -2,3 +2,8 @@
 .DS_Store
 .settings
 .project
+*.class
+target/*
+*.lst
+pom.properties
+*.jar

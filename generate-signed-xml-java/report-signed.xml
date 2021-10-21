@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><purchaseReport xmlns="http://www.example.com/Report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" period="P3M" periodEnding="1999-12-31" xsi:schemaLocation="http://www.example.com/Report  report.xsd">
+
+ <regions>
+  <zip code="95819">
+   <part number="872-AA" quantity="1"/>
+   <part number="926-AA" quantity="1"/>
+   <part number="833-AA" quantity="1"/>
+   <part number="455-BX" quantity="1"/>
+  </zip>
+  <zip code="63143">
+   <part number="455-BX" quantity="4"/>
+  </zip>
+ </regions>
+
+ <parts>
+  <part number="872-AA">Lawnmower</part>
+  <part number="926-AA">Baby Monitor</part>
+  <part number="833-AA">Lapis Necklace</part>
+  <part number="455-BX">Sturdy Shelves</part>
+ </parts>
+
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#hmac-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>nk+ObQEgnPPtnefSk6FvvMyfVa4=</DigestValue></Reference></SignedInfo><SignatureValue>wOSG0wCFOEAvsB7e+X/HjlJtIx8=</SignatureValue></Signature></purchaseReport>
